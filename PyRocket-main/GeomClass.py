@@ -108,9 +108,27 @@ class ChamberGeometry():
         
         # This is meant to be able to import external CSV chamber contours
         xy = np.genfromtxt('PyRocket-main\Contour.csv', delimiter = ',')
-        self.geometry = xy / 1000
-        self.x = xy[:,0] / 1000
-        self.y = xy[:,1] / 1000
+        xy = xy / 1000  # convert to meters
+
+        x = xy[:,0]
+        y = xy[:,1]
+
+        # Clean and sort
+        valid = np.isfinite(x) & np.isfinite(y)
+        x = x[valid]
+        y = y[valid]
+
+        order = np.argsort(x)
+        x = x[order]
+        y = y[order]
+
+        # Resample to uniform spacing dx
+        x_uniform = np.arange(x.min(), x.max(), self.dx)
+        y_uniform = np.interp(x_uniform, x, y)
+
+        self.x = x_uniform
+        self.y = y_uniform
+        self.geometry = np.vstack([self.x, self.y]).T
 
 
     def plot_contour(self, path=False):

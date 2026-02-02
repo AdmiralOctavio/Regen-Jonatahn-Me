@@ -65,7 +65,7 @@ E = 1							# youngs modulus [Pa]
 a = 1							# thermal expasion coefficinent [1/K]
 sig_u = 1                  		# ultimate strength [Pa]
 eps = 0.8						# thermal emissivity
-roughness = 0.7e-5				# effective roughness height [m] from Materialize
+roughness = 1e-5				# effective roughness height [m] from Materialize
 alpha = k / rho / Cp			# thermal diffusivity [m^2/s]
 IN718 = Material('IN718', alpha, k, rho, Cp, v, E, a, eps, sig_u, roughness)
 
@@ -76,12 +76,12 @@ IN718.thermal_conductivity(np.array([11.9, 13.7, 16.9, 21.7, 25.6, 22.9, 19.1, 1
 k = 310							# thermal conductivity [W/m/K] at 400 C
 Cp = 520					    # specific heat [J/kg/K] at 400 C
 rho = 8900						# density [kg/m^3]
-v = 1                       	# poiosson ratio
-E = 1							# youngs modulus [Pa]
-a = 1							# thermal expasion coefficinent [1/K]
-sig_u = 1                  		# ultimate strength [Pa]
+v = 0.34                       	# poiosson ratio at 400 C
+E = 110e9							# youngs modulus [Pa] at 400 C
+a = 17e-6							# thermal expasion coefficinent [1/K] at 400 C
+sig_u = 140e6                  		# ultimate strength [Pa] at 400 C
 eps = 0.8						# thermal emissivity
-roughness = 2.3e-5				# effective roughness height [m] from SLM Solutions
+roughness = 5e-5				# effective roughness height [m] from SLM Solutions
 alpha = k / rho / Cp			# thermal diffusivity [m^2/s]
 CuCr1Zr = Material('CuCr1Zr', alpha, k, rho, Cp, v, E, a, eps, sig_u, roughness)
 
