@@ -103,7 +103,11 @@ class HeatTransfer():
         else:
             raise ValueError('Invalid heat transfer method. Select: "standard-bartz", "modified-bartz" or "cinjarev"')
 
-        return halpha * St_St0, T_hg
+        error_test = 8.3 / 100
+        stdev_test = 5.6 / 100
+        Safety_factor = (error_test + 1.96 * stdev_test) + 1 # 2 Stdev
+
+        return halpha * St_St0, T_hg * Safety_factor
         
         
     def pressure_drop(self, idx):

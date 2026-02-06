@@ -81,13 +81,31 @@ E = 110e9							# youngs modulus [Pa] at 400 C
 a = 17e-6							# thermal expasion coefficinent [1/K] at 400 C
 sig_u = 140e6                  		# ultimate strength [Pa] at 400 C
 eps = 0.8						# thermal emissivity
-roughness = 5e-5				# effective roughness height [m] from SLM Solutions
+roughness = 0.5e-5				# effective roughness height [m] from SLM Solutions
 alpha = k / rho / Cp			# thermal diffusivity [m^2/s]
 CuCr1Zr = Material('CuCr1Zr', alpha, k, rho, Cp, v, E, a, eps, sig_u, roughness)
 
 # set variable material properties for CuCr1Zr from 'Thermal Fatigue testing of CuCrZr allow for high temperature tooling applications' by Y. Birol
 CuCr1Zr.thermal_conductivity(np.array([290, 292, 300, 302, 305, 310, 315, 320, 330]), np.array([273, 373, 473, 573, 673, 773, 873, 973, 1073]))
 
+# SS 316L
+k = 21							# Lowk asked chatgpt for this
+Cp = 750
+rho = 7580
+v = 1
+E = 1
+a = 1
+sig_u = 1
+eps = 0.8
+roughness = 5e-5
+alpha = k / rho / Cp
+
+SS316L = Material('SS316L', alpha, k, rho, Cp, v, E, a, eps, sig_u, roughness)
+SS316L.thermal_conductivity(np.array([13.8, 14.6, 15.8, 17.1, 18.6, 20.1, 21.6, 23.1, 24.6, 26.1, 27.6, 29.1, 30.6, 32.0, 33.4, 34.8, 36.2, 37.5, 38.7, 39.9, 41.0, 42.0, 42.9, 43.7, 44.4, 45.0]), np.array([
+    270, 300, 350, 400, 450, 500, 550, 600, 650, 700,
+    750, 800, 850, 900, 950, 1000, 1050, 1100, 1150,
+    1200, 1250, 1300, 1350, 1400, 1450, 1500
+]))
 
 # SS 1.4404 
 k = 23					        # thermal conductivity [W/m/K] at 500 C

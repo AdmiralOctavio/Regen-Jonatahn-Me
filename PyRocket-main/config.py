@@ -29,24 +29,24 @@ hot_gas_method  = 'cinjarev'                         # use either 'cinjarev', 's
 
 # Operating point of combustion chamber 
 eta_c_star      = 0.9                                # c* efficiency
-MR              = 5.13
+MR              = 2
 m_dot           = 0.307                                # total mass flow [kg/s]
 m_dot_f         = m_dot / (MR + 1)
 m_dot_ox        = m_dot - m_dot_f
 Pc              = 34e5                               # Chamber pressure [Pa]
 
 # Coolant input
-cooling_fluid   = ['N2O']                            # needs to be list of str
+cooling_fluid   = ['C2H5OH']                            # needs to be list of str
 fluid_mass_frac = [1]    			                 # mass fractions of the cooling fluid (needs to add up to 1)
-m_dot_coolant   = m_dot_ox                 		 	 # mass flow through the cooling channels
+m_dot_coolant   = m_dot_f                 		 	 # mass flow through the cooling channels
 inlet_temp      = 288.0                     		 # inlet temperature [K]
-inlet_pressure  = 45e5                               # Cooling channel inlet pressure [Pa]
+inlet_pressure  = 50e5                               # Cooling channel inlet pressure [Pa]
 
 cooling_method  = 'gnielinski'                       # use either 'gnielinski', 'dittus-boelter' or 'dittus-boelter-simple', pay attention to suitable Re number range
 ambient_temp    = 288.15							 # ambient temperature for radiation boundary condition [K] (must be type float)!!
 
 # Film cooling settings for coolant originating at the injector face
-m_dot_film = 0.0 * m_dot_coolant                      # set mass flow to 0.0 to deactivate film cooing
+m_dot_film = 0.05 * m_dot_coolant                      # set mass flow to 0.0 to deactivate film cooing
 injection_velocity = 10								  # [m/s]
 injector_diameter  = 0.4e-3							  # [m]
 
@@ -62,7 +62,7 @@ phi_conv  = 30                                       # convergence angle [deg]
 phi_div   = 24                                       # divergence angle [deg]
 phi_e     = 15                                       # exit angle [deg]
 step_size = 0.0025                                     # step size along the chamber contour [m]
-material  = matlib.CuCr1Zr                             # use entry from MaterialLibrary. Make sure temperature dependent properties are specified
+material  = matlib.SS316L                             # use entry from MaterialLibrary. Make sure temperature dependent properties are specified
 
 # cooling channel geometry; h_c, psi, t_w_i can be functions of x 
 n         = 26                                       # number of cooling channels [int]
