@@ -29,7 +29,11 @@ hot_gas_method  = 'cinjarev'                         # use either 'cinjarev', 's
 
 # Operating point of combustion chamber 
 eta_c_star      = 0.9                                # c* efficiency
+<<<<<<< Updated upstream
 MR              = 2
+=======
+MR              = 2.1
+>>>>>>> Stashed changes
 m_dot           = 0.307                                # total mass flow [kg/s]
 m_dot_f         = m_dot / (MR + 1)
 m_dot_ox        = m_dot - m_dot_f
@@ -65,16 +69,16 @@ step_size = 0.0025                                     # step size along the cha
 material  = matlib.SS316L                             # use entry from MaterialLibrary. Make sure temperature dependent properties are specified
 
 # cooling channel geometry; h_c, psi, t_w_i can be functions of x 
-n         = 26                                       # number of cooling channels [int]
+n         = 20                                       # number of cooling channels [int]
 h_c       = 1e-3                                     # radial height of cooling channels [m] CAN BE FLOAT OR FUNCTION
 # EXAMPLE of function input for psi: psi = lambda x: 1/3 * (1 - 0.0001 * x) 
 psi       = 0.6                                      # fill factor of the cooling channels; fraction of the circumferecne covered by the cooling channels (0 - 1) CAN BE FLOAT OR FUNCTION
-t_w_i     = 0.9e-3                                   # inner chamber wall thickness [m] CAN BE FLOAT OR FUNCTION
-t_w_o     = 1.5e-3                                     # outer chamber wall thickness [m]
+t_w_i     = 1e-3                                   # inner chamber wall thickness [m] CAN BE FLOAT OR FUNCTION
+t_w_o     = 1.2e-3                                     # outer chamber wall thickness [m]
 start_idx = -1										 # starting index, use 0 for injector side and -1 for nozzle
 
 # 2D Section Simulation settings
-cell_size    = 0.4 * t_w_i                          # cell size in 2D section solver, will heavily impact performance
+cell_size    = 0.15 * t_w_i                          # cell size in 2D section solver, will heavily impact performance
 time_step    = (cell_size)**2 / (material.alpha)     # time step in 2D section solver (cell_size)**2 / (material.alpha)
 adaptive_up  = 1.4                                   # UP factor for adaptive time step. Increase for faster convergence but less stability
 tolerance    = 1e-2                                  # maximum temperature difference between time steps

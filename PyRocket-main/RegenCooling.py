@@ -103,11 +103,25 @@ class HeatTransfer():
         else:
             raise ValueError('Invalid heat transfer method. Select: "standard-bartz", "modified-bartz" or "cinjarev"')
 
+<<<<<<< Updated upstream
         error_test = 8.3 / 100
         stdev_test = 5.6 / 100
         Safety_factor = (error_test + 1.96 * stdev_test) + 1 # 2 Stdev
 
         return halpha * St_St0, T_hg * Safety_factor
+=======
+        # Inclusion of measured validation errors. 
+
+        error_test = 8.3 / 100 
+        stdev_test = 5.6 / 100
+        factor_test = (1 + error_test + 1.96 * stdev_test) * 0.75
+
+        # Are you using additives like PDMS or TOES? Then you should reduce factor_test by the specific amount your additive reduces flux by
+        # For 1% TEOS, you can expect roughly a 25% flux reduction.
+
+        return halpha * St_St0, T_hg * factor_test
+
+>>>>>>> Stashed changes
         
         
     def pressure_drop(self, idx):
