@@ -28,20 +28,18 @@ ox              = 'N2O'
 hot_gas_method  = 'cinjarev'                         # use either 'cinjarev', 'standard-bartz' or 'modified-bartz'
 
 # Operating point of combustion chamber 
-eta_c_star      = 0.9                                # c* efficiency
-<<<<<<< Updated upstream
+eta_c_star      = 0.85                                # c* efficiency
+
 MR              = 2
-=======
 MR              = 2.1
->>>>>>> Stashed changes
 m_dot           = 0.307                                # total mass flow [kg/s]
 m_dot_f         = m_dot / (MR + 1)
 m_dot_ox        = m_dot - m_dot_f
 Pc              = 34e5                               # Chamber pressure [Pa]
 
 # Coolant input
-cooling_fluid   = ['C2H5OH']                            # needs to be list of str
-fluid_mass_frac = [1]    			                 # mass fractions of the cooling fluid (needs to add up to 1)
+cooling_fluid   = ['C2H5OH', 'H2O']                            # needs to be list of str
+fluid_mass_frac = [1, 0]    			                 # mass fractions of the cooling fluid (needs to add up to 1)
 m_dot_coolant   = m_dot_f                 		 	 # mass flow through the cooling channels
 inlet_temp      = 288.0                     		 # inlet temperature [K]
 inlet_pressure  = 50e5                               # Cooling channel inlet pressure [Pa]
@@ -66,7 +64,7 @@ phi_conv  = 30                                       # convergence angle [deg]
 phi_div   = 24                                       # divergence angle [deg]
 phi_e     = 15                                       # exit angle [deg]
 step_size = 0.0025                                     # step size along the chamber contour [m]
-material  = matlib.SS316L                             # use entry from MaterialLibrary. Make sure temperature dependent properties are specified
+material  = matlib.AlSi10Mg                             # use entry from MaterialLibrary. Make sure temperature dependent properties are specified
 
 # cooling channel geometry; h_c, psi, t_w_i can be functions of x 
 n         = 20                                       # number of cooling channels [int]
@@ -78,7 +76,7 @@ t_w_o     = 1.2e-3                                     # outer chamber wall thic
 start_idx = -1										 # starting index, use 0 for injector side and -1 for nozzle
 
 # 2D Section Simulation settings
-cell_size    = 0.15 * t_w_i                          # cell size in 2D section solver, will heavily impact performance
+cell_size    = 0.35 * t_w_i                          # cell size in 2D section solver, will heavily impact performance
 time_step    = (cell_size)**2 / (material.alpha)     # time step in 2D section solver (cell_size)**2 / (material.alpha)
 adaptive_up  = 1.4                                   # UP factor for adaptive time step. Increase for faster convergence but less stability
 tolerance    = 1e-2                                  # maximum temperature difference between time steps
